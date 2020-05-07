@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roncoo.education.dao.SysUserMapper">
+    <select id="getAllSysUser" resultType="roncoo.education.bean.SysUser">
+        SELECT * FROM sys_user ORDER BY id
+    </select>
+    <select id="getAllSysUserByMobile" parameterType="BigInteger" resultType="roncoo.education.bean.SysUser">
+        SELECT * FROM sys_user where mobile=#{mobile} ORDER BY id
+    </select>
+    <delete id="deleteSysUserById" parameterType="Long">
+        delete from sys_user where id=#{id}
+    </delete>
+</mapper>
