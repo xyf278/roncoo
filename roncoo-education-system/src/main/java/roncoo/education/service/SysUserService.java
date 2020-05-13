@@ -2,8 +2,8 @@ package roncoo.education.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import roncoo.education.bean.SysUser;
 import roncoo.education.dao.SysUserMapper;
+import roncoo.education.entity.SysUser;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -20,5 +20,11 @@ public class SysUserService {
     }
     public Integer deleteSysUserById(Long id){
         return sysUserMapper.deleteSysUserById(id);
+    }
+    public int insert(SysUser sysUser){
+        return sysUserMapper.insert(sysUser);
+    }
+    public int update(SysUser sysUser){
+        return sysUserMapper.update(sysUser);
     }
 }

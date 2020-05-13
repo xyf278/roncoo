@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roncoo.education.dao.LecturerProfitDao">
+
+    <resultMap type="roncoo.education.entity.LecturerProfit" id="LecturerProfitMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+        <result property="lecturerUserNo" column="lecturer_user_no" jdbcType="INTEGER"/>
+        <result property="bankCardNo" column="bank_card_no" jdbcType="VARCHAR"/>
+        <result property="bankName" column="bank_name" jdbcType="VARCHAR"/>
+        <result property="bankBranchName" column="bank_branch_name" jdbcType="VARCHAR"/>
+        <result property="bankUserName" column="bank_user_name" jdbcType="VARCHAR"/>
+        <result property="bankIdCardNo" column="bank_id_card_no" jdbcType="VARCHAR"/>
+        <result property="lecturerProfit" column="lecturer_profit" jdbcType="NUMERIC"/>
+        <result property="platformProfit" column="platform_profit" jdbcType="NUMERIC"/>
+        <result property="profitStatus" column="profit_status" jdbcType="BOOLEAN"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LecturerProfitMap">
+        select
+          id, gmt_create, lecturer_user_no, bank_card_no, bank_name, bank_branch_name, bank_user_name, bank_id_card_no, lecturer_profit, platform_profit, profit_status, remark
+        from springboot3.lecturer_profit
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LecturerProfitMap">
+        select
+          id, gmt_create, lecturer_user_no, bank_card_no, bank_name, bank_branch_name, bank_user_name, bank_id_card_no, lecturer_profit, platform_profit, profit_status, remark
+        from springboot3.lecturer_profit
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LecturerProfitMap">
+        select
+          id, gmt_create, lecturer_user_no, bank_card_no, bank_name, bank_branch_name, bank_user_name, bank_id_card_no, lecturer_profit, platform_profit, profit_status, remark
+        from springboot3.lecturer_profit
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{gmtCreate}
+            </if>
+            <if test="lecturerUserNo != null">
+                and lecturer_user_no = #{lecturerUserNo}
+            </if>
+            <if test="bankCardNo != null and bankCardNo != ''">
+                and bank_card_no = #{bankCardNo}
+            </if>
+            <if test="bankName != null and bankName != ''">
+                and bank_name = #{bankName}
+            </if>
+            <if test="bankBranchName != null and bankBranchName != ''">
+                and bank_branch_name = #{bankBranchName}
+            </if>
+            <if test="bankUserName != null and bankUserName != ''">
+                and bank_user_name = #{bankUserName}
+            </if>
+            <if test="bankIdCardNo != null and bankIdCardNo != ''">
+                and bank_id_card_no = #{bankIdCardNo}
+            </if>
+            <if test="lecturerProfit != null">
+                and lecturer_profit = #{lecturerProfit}
+            </if>
+            <if test="platformProfit != null">
+                and platform_profit = #{platformProfit}
+            </if>
+            <if test="profitStatus != null">
+                and profit_status = #{profitStatus}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into springboot3.lecturer_profit(gmt_create, lecturer_user_no, bank_card_no, bank_name, bank_branch_name, bank_user_name, bank_id_card_no, lecturer_profit, platform_profit, profit_status, remark)
+        values (#{gmtCreate}, #{lecturerUserNo}, #{bankCardNo}, #{bankName}, #{bankBranchName}, #{bankUserName}, #{bankIdCardNo}, #{lecturerProfit}, #{platformProfit}, #{profitStatus}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update springboot3.lecturer_profit
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="lecturerUserNo != null">
+                lecturer_user_no = #{lecturerUserNo},
+            </if>
+            <if test="bankCardNo != null and bankCardNo != ''">
+                bank_card_no = #{bankCardNo},
+            </if>
+            <if test="bankName != null and bankName != ''">
+                bank_name = #{bankName},
+            </if>
+            <if test="bankBranchName != null and bankBranchName != ''">
+                bank_branch_name = #{bankBranchName},
+            </if>
+            <if test="bankUserName != null and bankUserName != ''">
+                bank_user_name = #{bankUserName},
+            </if>
+            <if test="bankIdCardNo != null and bankIdCardNo != ''">
+                bank_id_card_no = #{bankIdCardNo},
+            </if>
+            <if test="lecturerProfit != null">
+                lecturer_profit = #{lecturerProfit},
+            </if>
+            <if test="platformProfit != null">
+                platform_profit = #{platformProfit},
+            </if>
+            <if test="profitStatus != null">
+                profit_status = #{profitStatus},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from springboot3.lecturer_profit where id = #{id}
+    </delete>
+
+</mapper>

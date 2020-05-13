@@ -6,5 +6,17 @@
 
     <groupId>org.sang</groupId>
     <artifactId>roncoo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>roncoo-education-system</module>
+        <module>roncoo-education-course</module>
+    </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
+
 </project>

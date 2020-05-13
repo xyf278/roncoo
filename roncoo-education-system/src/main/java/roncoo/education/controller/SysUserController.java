@@ -2,12 +2,11 @@ package roncoo.education.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import roncoo.education.bean.SysUser;
+import roncoo.education.entity.SysUser;
 import roncoo.education.service.SysUserService;
 
 import java.math.BigInteger;
@@ -50,5 +49,33 @@ public class SysUserController {
         }else {
             return "您无此权限,无法删除";
         }
+    }
+    @ApiOperation(value = "修改用户",notes = "修改用户信息")
+    @RequestMapping(value = "updateUserById",method = RequestMethod.POST)
+    public String deleteSysUserById(@ModelAttribute SysUser sysUser){
+        Integer influence=sysUserService.update(sysUser);
+        if(influence>0){
+            return "修改成功";
+        }else {
+            return "您无此权限,无法修改";
+        }
+    }
+    @ApiOperation(value = "添加",notes = "添加用户信息")
+    @RequestMapping(value = "addUser",method = RequestMethod.POST)
+    public String addUser(@RequestBody SysUser sysUser) {
+        String a = "";
+        try {
+            System.out.println("sysUser" + sysUser.toString());
+            Integer influence = sysUserService.insert(sysUser);
+            if (influence > 0) {
+                a = "添加成功";
+            } else {
+                a = "您无此权限,无法添加";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return a;
     }
 }

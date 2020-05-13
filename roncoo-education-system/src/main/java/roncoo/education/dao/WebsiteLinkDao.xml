@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roncoo.education.dao.WebsiteLinkDao">
+
+    <resultMap type="roncoo.education.entity.WebsiteLink" id="WebsiteLinkMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+        <result property="statusId" column="status_id" jdbcType="BOOLEAN"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="linkName" column="link_name" jdbcType="VARCHAR"/>
+        <result property="linkUrl" column="link_url" jdbcType="VARCHAR"/>
+        <result property="linkTarget" column="link_target" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="WebsiteLinkMap">
+        select
+          id, gmt_create, gmt_modified, status_id, sort, link_name, link_url, link_target
+        from springboot.website_link
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="WebsiteLinkMap">
+        select
+          id, gmt_create, gmt_modified, status_id, sort, link_name, link_url, link_target
+        from springboot.website_link
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="WebsiteLinkMap">
+        select
+          id, gmt_create, gmt_modified, status_id, sort, link_name, link_url, link_target
+        from springboot.website_link
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmt_modified = #{gmtModified}
+            </if>
+            <if test="statusId != null">
+                and status_id = #{statusId}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="linkName != null and linkName != ''">
+                and link_name = #{linkName}
+            </if>
+            <if test="linkUrl != null and linkUrl != ''">
+                and link_url = #{linkUrl}
+            </if>
+            <if test="linkTarget != null and linkTarget != ''">
+                and link_target = #{linkTarget}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="roncoo.education.entity.WebsiteLink">
+        insert into springboot.website_link(gmt_create, gmt_modified, status_id, sort, link_name, link_url, link_target)
+        values (#{gmtCreate}, #{gmtModified}, #{statusId}, #{sort}, #{linkName}, #{linkUrl}, #{linkTarget})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update springboot.website_link
+        <set>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="statusId != null">
+                status_id = #{statusId},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="linkName != null and linkName != ''">
+                link_name = #{linkName},
+            </if>
+            <if test="linkUrl != null and linkUrl != ''">
+                link_url = #{linkUrl},
+            </if>
+            <if test="linkTarget != null and linkTarget != ''">
+                link_target = #{linkTarget},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from springboot.website_link where id = #{id}
+    </delete>
+
+</mapper>
