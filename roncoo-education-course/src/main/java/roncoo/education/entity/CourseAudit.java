@@ -1,5 +1,6 @@
 package roncoo.education.entity;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -11,6 +12,31 @@ import java.io.Serializable;
  */
 public class CourseAudit implements Serializable {
     private static final long serialVersionUID = 510758536569869736L;
+
+    @Override
+    public String toString() {
+        return "CourseAudit{" +
+                "id=" + id +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", statusId=" + statusId +
+                ", sort=" + sort +
+                ", auditStatus=" + auditStatus +
+                ", auditOpinion='" + auditOpinion + '\'' +
+                ", lecturerUserNo=" + lecturerUserNo +
+                ", categoryId1=" + categoryId1 +
+                ", categoryId2=" + categoryId2 +
+                ", categoryId3=" + categoryId3 +
+                ", courseName='" + courseName + '\'' +
+                ", courseLogo='" + courseLogo + '\'' +
+                ", introduceId=" + introduceId +
+                ", isFree=" + isFree +
+                ", courseOriginal=" + courseOriginal +
+                ", courseDiscount=" + courseDiscount +
+                ", isPutaway=" + isPutaway +
+                '}';
+    }
+
     /**
     * 主键
     */
@@ -34,56 +60,15 @@ public class CourseAudit implements Serializable {
     /**
     * 审核状态(0:待审核,1:审核通过,2:审核不通过)
     */
-    private Integer auditStatus;
+    private BigInteger auditStatus;
     /**
     * 审核意见
     */
     private String auditOpinion;
-    /**
-    * 讲师用户编码
-    */
-    private Long lecturerUserNo;
-    /**
-    * 一级分类ID
-    */
-    private Long categoryId1;
-    /**
-    * 二级分类ID
-    */
-    private Long categoryId2;
-    /**
-    * 三级分类ID
-    */
-    private Long categoryId3;
-    /**
-    * 课程名称
-    */
-    private String courseName;
-    /**
-    * 课程封面
-    */
-    private String courseLogo;
-    /**
-    * 课程介绍ID
-    */
-    private Long introduceId;
-    /**
-    * 是否免费：1免费，0收费
-    */
-    private int isFree;
-    /**
-    * 原价
-    */
-    private Double courseOriginal;
-    /**
-    * 优惠价
-    */
-    private Double courseDiscount;
-    /**
-    * 是否上架(1:上架，0:下架)
-    */
-    private int isPutaway;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Long getId() {
         return id;
@@ -125,11 +110,11 @@ public class CourseAudit implements Serializable {
         this.sort = sort;
     }
 
-    public Integer getAuditStatus() {
+    public BigInteger getAuditStatus() {
         return auditStatus;
     }
 
-    public void setAuditStatus(Integer auditStatus) {
+    public void setAuditStatus(BigInteger auditStatus) {
         this.auditStatus = auditStatus;
     }
 
@@ -141,35 +126,35 @@ public class CourseAudit implements Serializable {
         this.auditOpinion = auditOpinion;
     }
 
-    public Long getLecturerUserNo() {
+    public BigInteger getLecturerUserNo() {
         return lecturerUserNo;
     }
 
-    public void setLecturerUserNo(Long lecturerUserNo) {
+    public void setLecturerUserNo(BigInteger lecturerUserNo) {
         this.lecturerUserNo = lecturerUserNo;
     }
 
-    public Long getCategoryId1() {
+    public BigInteger getCategoryId1() {
         return categoryId1;
     }
 
-    public void setCategoryId1(Long categoryId1) {
+    public void setCategoryId1(BigInteger categoryId1) {
         this.categoryId1 = categoryId1;
     }
 
-    public Long getCategoryId2() {
+    public BigInteger getCategoryId2() {
         return categoryId2;
     }
 
-    public void setCategoryId2(Long categoryId2) {
+    public void setCategoryId2(BigInteger categoryId2) {
         this.categoryId2 = categoryId2;
     }
 
-    public Long getCategoryId3() {
+    public BigInteger getCategoryId3() {
         return categoryId3;
     }
 
-    public void setCategoryId3(Long categoryId3) {
+    public void setCategoryId3(BigInteger categoryId3) {
         this.categoryId3 = categoryId3;
     }
 
@@ -228,5 +213,50 @@ public class CourseAudit implements Serializable {
     public void setIsPutaway(int isPutaway) {
         this.isPutaway = isPutaway;
     }
+
+    /**
+    * 讲师用户编码
+    */
+    private BigInteger lecturerUserNo;
+    /**
+    * 一级分类ID
+    */
+    private BigInteger categoryId1;
+    /**
+    * 二级分类ID
+    */
+    private BigInteger categoryId2;
+    /**
+    * 三级分类ID
+    */
+    private BigInteger categoryId3;
+    /**
+    * 课程名称
+    */
+    private String courseName;
+    /**
+    * 课程封面
+    */
+    private String courseLogo;
+    /**
+    * 课程介绍ID
+    */
+    private Long introduceId;
+    /**
+    * 是否免费：1免费，0收费
+    */
+    private int isFree;
+    /**
+    * 原价
+    */
+    private Double courseOriginal;
+    /**
+    * 优惠价
+    */
+    private Double courseDiscount;
+    /**
+    * 是否上架(1:上架，0:下架)
+    */
+    private int isPutaway;
 
 }

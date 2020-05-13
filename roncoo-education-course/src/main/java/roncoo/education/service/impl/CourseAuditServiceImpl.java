@@ -2,6 +2,7 @@ package roncoo.education.service.impl;
 
 import roncoo.education.entity.CourseAudit;
 import roncoo.education.dao.CourseAuditDao;
+import roncoo.education.entity.vo.CourseAuditVO;
 import roncoo.education.service.CourseAuditService;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,11 @@ public class CourseAuditServiceImpl implements CourseAuditService {
     @Override
     public List<CourseAudit> queryAll(CourseAudit courseAudit) {
         return courseAuditDao.queryAll(courseAudit);
+    }
+
+    @Override
+    public int updateAudit_status(CourseAuditVO courseAudit) {
+        return courseAuditDao.updateAudit_status(courseAudit);
     }
 
     /**

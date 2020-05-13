@@ -166,6 +166,22 @@
         </set>
         where id = #{id}
     </update>
+    <!--修改课程的审核状态-->
+    <update id="updateAudit_status">
+        update springboot2.course_audit
+        <set>
+            <if test="gmtModified !=null">
+                gmt_modified =#{gmtModified},
+            </if>
+            <if test="auditStatus !=null">
+                audit_status= #{auditStatus},
+            </if>
+            <if test="auditOpinion !=null">
+                audit_opinion=#{auditOpinion},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">

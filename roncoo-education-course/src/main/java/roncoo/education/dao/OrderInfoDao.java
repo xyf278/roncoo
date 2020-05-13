@@ -1,20 +1,18 @@
 package roncoo.education.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import roncoo.education.entity.CourseAudit;
+import roncoo.education.entity.OrderInfo;
 import org.apache.ibatis.annotations.Param;
-import roncoo.education.entity.vo.CourseAuditVO;
-
 import java.util.List;
 
 /**
- * 课程信息-审核(CourseAudit)表数据库访问层
+ * 订单信息表(OrderInfo)表数据库访问层
  *
  * @author makejava
- * @since 2020-05-13 19:55:02
+ * @since 2020-05-13 21:27:34
  */
  @Mapper
-public interface CourseAuditDao {
+public interface OrderInfoDao {
 
     /**
      * 通过ID查询单条数据
@@ -22,7 +20,7 @@ public interface CourseAuditDao {
      * @param id 主键
      * @return 实例对象
      */
-    CourseAudit queryById(Long id);
+    OrderInfo queryById(Long id);
 
     /**
      * 查询指定行数据
@@ -31,34 +29,32 @@ public interface CourseAuditDao {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<CourseAudit> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<OrderInfo> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param courseAudit 实例对象
+     * @param orderInfo 实例对象
      * @return 对象列表
      */
-    List<CourseAudit> queryAll(CourseAudit courseAudit);
-
-    int updateAudit_status(CourseAuditVO courseAudit);
+    List<OrderInfo> queryAll(OrderInfo orderInfo);
 
     /**
      * 新增数据
      *
-     * @param courseAudit 实例对象
+     * @param orderInfo 实例对象
      * @return 影响行数
      */
-    int insert(CourseAudit courseAudit);
+    int insert(OrderInfo orderInfo);
 
     /**
      * 修改数据
      *
-     * @param courseAudit 实例对象
+     * @param orderInfo 实例对象
      * @return 影响行数
      */
-    int update(CourseAudit courseAudit);
+    int update(OrderInfo orderInfo);
 
     /**
      * 通过主键删除数据
